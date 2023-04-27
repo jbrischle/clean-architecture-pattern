@@ -3,7 +3,7 @@
 node_modules
 
 # compiled output
-dist
+**/**dist
 tmp
 /out-tsc
 

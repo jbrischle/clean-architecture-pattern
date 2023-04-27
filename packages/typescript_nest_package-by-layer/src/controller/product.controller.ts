@@ -1,21 +1,29 @@
 import { Body, Controller, Get, Inject, Put, Query } from '@nestjs/common';
-import { ProductModel, ProductService } from '../service/product.service';
+import { ProductService } from '../service/product.service';
+
+type ProductDto = {
+  id: string;
+  name: string;
+};
 
 @Controller('product')
 export class ProductController {
   constructor(
-    @Inject('ProductService') private readonly productService: ProductService,
+    @Inject('ProductService') private readonly productService: ProductService
   ) {}
 
   @Put()
-  create(@Body() order: ProductModel): Promise<ProductModel> {
+  create(@Body() order: ProductDto): Promise<ProductDto> {
     return this.productService.create(order);
   }
 
   @Get()
-  get(
-    @Query('productId') productId: string,
-  ): Promise<ProductModel | undefined> {
-    return this.productService.get(productId);
+  async get(@Query('productId') productId: string): Promise<ProductDto[]> {
+    if (productId) {
+      const product = await this.productService.get(productId);
+      return product ? [product] : [];
+    } else {
+      return await this.productService.getAll();
+    }
   }
 }

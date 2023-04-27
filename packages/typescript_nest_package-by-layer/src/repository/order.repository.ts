@@ -1,30 +1,36 @@
 import { Injectable, Module } from '@nestjs/common';
 
-export interface OrderEntity {
+type OrderEntity = {
   id: string;
   productId: string;
   customerId: string;
   quantity: string;
-}
+};
 
 export interface OrderRepository {
   create(order: OrderEntity): Promise<OrderEntity>;
 
   get(orderId: string): Promise<OrderEntity | undefined>;
+
+  getAll(): Promise<OrderEntity[]>;
 }
 
 @Injectable()
 class OrderRepositoryImpl implements OrderRepository {
-  private orderStore: OrderEntity[] = [];
+  private orderStore: Map<string, OrderEntity> = new Map<string, OrderEntity>();
 
   create(order: OrderEntity): Promise<OrderEntity> {
-    this.orderStore.push(order);
+    this.orderStore.set(order.id, order);
     return Promise.resolve(order);
   }
 
   get(orderId: string): Promise<OrderEntity | undefined> {
-    const order = this.orderStore.find((order) => order.id === orderId);
+    const order = this.orderStore.get(orderId);
     return Promise.resolve(order);
+  }
+
+  getAll(): Promise<OrderEntity[]> {
+    return Promise.resolve(Array.from(this.orderStore.values()));
   }
 }
 

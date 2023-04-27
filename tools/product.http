@@ -1,0 +1,30 @@
+PUT http://localhost:3000/api/product
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "new product"
+}
+
+> {%
+  client.global.set("productId", response.body.id)
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(response.body.name === "new product", "name does not match input");
+%}
+
+### Get all orders
+GET http://localhost:3000/api/product
+
+> {%
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(response.body.length >= 0, "there should be at least one order");
+%}
+
+### Get specific order by id
+GET http://localhost:3000/api/product?productId={{productId}}
+
+> {%
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(response.body.length === 1, "there should only be one item");
+  client.assert(response.body[0].name === "new product", "name does not match input");
+%}
