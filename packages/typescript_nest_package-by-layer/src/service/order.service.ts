@@ -2,13 +2,6 @@ import { Inject, Injectable, Module } from '@nestjs/common';
 import { OrderRepository } from '../repository/order.repository';
 import { RepositoryModule } from '../repository/repository.module';
 
-type OrderModel = {
-  id: string;
-  productId: string;
-  customerId: string;
-  quantity: string;
-};
-
 export interface OrderService {
   create(order: OrderModel): Promise<OrderModel>;
 
@@ -16,6 +9,13 @@ export interface OrderService {
 
   getAll(): Promise<OrderModel[]>;
 }
+
+type OrderModel = {
+  id: string;
+  productId: string;
+  customerId: string;
+  quantity: string;
+};
 
 @Injectable()
 class OrderServiceImpl implements OrderService {

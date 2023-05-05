@@ -1,12 +1,5 @@
 import { Injectable, Module } from '@nestjs/common';
 
-type OrderEntity = {
-  id: string;
-  productId: string;
-  customerId: string;
-  quantity: string;
-};
-
 export interface OrderRepository {
   create(order: OrderEntity): Promise<OrderEntity>;
 
@@ -14,6 +7,13 @@ export interface OrderRepository {
 
   getAll(): Promise<OrderEntity[]>;
 }
+
+type OrderEntity = {
+  id: string;
+  productId: string;
+  customerId: string;
+  quantity: string;
+};
 
 @Injectable()
 class OrderRepositoryImpl implements OrderRepository {
