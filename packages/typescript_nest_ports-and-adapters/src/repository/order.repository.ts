@@ -1,5 +1,5 @@
 import { Injectable, Module } from '@nestjs/common';
-import { OrderRepository } from '../../domain/order/interfaces';
+import { OrderRepository } from '../domain/order/interfaces';
 
 type OrderEntity = {
   id: string;

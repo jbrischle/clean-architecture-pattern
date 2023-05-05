@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Put, Query } from '@nestjs/common';
-import { ProductService } from '../../domain/product/interfaces';
+import { ProductService } from '../domain/product/interfaces';
 
 export type ProductDto = {
   id: string;

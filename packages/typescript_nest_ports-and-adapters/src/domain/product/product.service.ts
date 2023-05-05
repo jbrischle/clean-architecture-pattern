@@ -1,6 +1,6 @@
 import { Inject, Injectable, Module } from '@nestjs/common';
 import { ProductModel, ProductRepository, ProductService } from './interfaces';
-import { ProductRepositoryModule } from '../../infrastructure/repository/product.repository';
+import { ProductRepositoryModule } from '../../repository/product.repository';
 
 @Injectable()
 class ProductServiceImpl implements ProductService {

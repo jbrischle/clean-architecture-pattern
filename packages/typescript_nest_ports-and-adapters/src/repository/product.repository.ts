@@ -1,5 +1,5 @@
 import { Injectable, Module } from '@nestjs/common';
-import { ProductRepository } from '../../domain/product/interfaces';
+import { ProductRepository } from '../domain/product/interfaces';
 
 type ProductEntity = {
   id: string;

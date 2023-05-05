@@ -1,6 +1,6 @@
 import { Inject, Injectable, Module } from '@nestjs/common';
 import { OrderModel, OrderRepository, OrderService } from './interfaces';
-import { OrderRepositoryModule } from '../../infrastructure/repository/order.repository';
+import { OrderRepositoryModule } from '../../repository/order.repository';
 
 @Injectable()
 class OrderServiceImpl implements OrderService {
