@@ -4,10 +4,15 @@ The goal is to show possible implementations of the different architecture style
 
 # Mentioned patterns
 
-- Package by layer
-- Package by Feature
-- Ports and Adapters
-- Package by Component
+**Notes**:
+
+- blue objects are visible in the project
+- dotted line => implementing an interface
+- solid show => usage of an interface
+
+![Architecture Pattern](docs/architecture-pattern.png)
+
+## Issues
 
 # Languages
 
